@@ -2,75 +2,70 @@
 
 Versiyon: MVP v1.0  
 Tarih: 15 Nisan 2026  
-Hazırlayan: Mükremin Türkmen  
+Hazırlayan: Mükremin Türkmen 
 
 
  1. Executive Summary
-Lumina, günlük hayatta minimum zaman maliyetiyle maksimum duygusal denge sağlayan, "AI destekli proaktif wellness" uygulamasıdır.  
-Kullanıcılar her gün sadece 45 saniyede duygusal durumlarını kaydeder. Lumina zamanla kullanıcıyı tanır ve tam ihtiyacı olan anda **30-90 saniyelik kişiselleştirilmiş mikro destek** sunar.
+Lumina, modern hayatın kaosunda kullanıcılara "45 saniyede iç ışığını bulma" imkanı sunan, AI destekli proaktif duygusal denge uygulamasıdır.  
+Kullanıcı günlük check-in yaparak duygusal durumunu kaydeder; Lumina zamanla öğrenir ve kişiselleştirilmiş mikro müdahaleler önerir.
 
 Tagline: 45 saniyede iç ışığınızı bulun.
 
  2. Problem Statement
-Modern insanlar stres, yorgunluk ve duygusal dalgalanmaları fark etmekte ancak bunları yönetmek için uzun seanslara vakit bulamamaktadır. Mevcut uygulamalar genellikle generic veya zaman alıcıdır.  
-Lumina, predictive ve adaptive AI ile ultra kısa etkileşimlerde “beni gerçekten anlıyor” hissini yaratır.
+İnsanlar stres ve duygusal dalgalanmaları fark etmekte ancak uzun meditasyon veya karmaşık araçlara vakit ayıramamaktadır. Lumina, ultra kısa ve akıllı etkileşimlerle gerçek değer yaratır.
 
- 3. Target Audience & Personas
-- Yaş aralığı: 22-40 yaş arası şehirli yetişkinler
-- Kişi 1 – Ahmet (28): Beyaz yakalı, yoğun iş temposu, enerji yönetimi sorunu yaşıyor.
-- Kişi 2 – Ayşe (34): Freelancer, yaratıcı iş yapıyor, duygusal dalgalanmalar performansını etkiliyor.
-- Kişi 3 – Zeynep (22): Üniversite öğrencisi, sınav ve sosyal kaygı karışımı.
+ 3. Target Audience
+- 22-40 yaş arası şehirli çalışanlar, freelancer’lar ve öğrenciler
+- Yoğun tempo nedeniyle zamanı sınırlı olanlar
+- Mental wellness’e ilgi duyan ama uzun seans istemeyenler
 
-4. Product Vision
-Her gün birkaç dokunuşla duygusal farkındalığı artırmak ve AI’nin proaktif koçluğuyla hayatın fırtınalarında “iç ışık” bulmayı alışkanlık haline getirmek.
+ 4. MVP Özellikleri
 
- 5. MVP Scope (Prioritized Features)
-
- P0 – Must Have (Core Loop)
-- Onboarding & Authentication (Google, Apple, E-posta)
-- Ultra hızlı Daily Check-in (emoji mood + enerji + odak seviyesi + kısa not)
-- AI Mikro Koçluk Motoru (30-90 sn kişiselleştirilmiş öneri: nefes egzersizi, CBT reframing, micro-habit)
-- Progress Dashboard (renkli mood takvimi, streak sistemi, basit haftalık özet + AI içgörüsü)
+ P0 – Must Have
+- Kolay onboarding (Google, Apple, E-posta)
+- Ultra hızlı Daily Check-in (mood emoji + enerji + odak seviyesi + kısa not)
+- AI Mikro Koçluk (30-90 saniye kişiselleştirilmiş öneriler)
+- Progress Dashboard (mood takvimi, streak, haftalık AI içgörüsü)
 - Tam offline destek
 
  P1 – Should Have
-- Akıllı bildirim sistemi (sabah ve akşam)
-- Gizlilik odaklı Ayarlar ekranı
+- Akıllı bildirimler
+- Gizlilik & Ayarlar ekranı
 
- P2 – Post-MVP
-- Sesli rehberler, wearable entegrasyonu, detaylı raporlar, topluluk özellikleri
+ P2 – Future
+- Sesli rehberler
+- Wearable entegrasyonu
+- Detaylı raporlar
 
- 6. User Flows
-1. İlk açılış → Onboarding → İlk check-in
-2. Ana ekran → Hızlı check-in → AI önerisi → Uygula veya atla
-3. Insights ekranı → Haftalık trend ve içgörüler
+ 5. Multilingual Support (Dil Desteği)
+- MVP’de dahil edilecek diller:İngilizce + Türkçe
+- Uygulama arayüzü, AI önerileri ve bildirimler her iki dilde de desteklenecek.
+- Dil seçimi onboarding sırasında yapılacak.
+- Yapı: Flutter Internationalization kullanılarak hazırlandı. İleride İspanyolca, Almanca vb. kolayca eklenebilir.
 
- 7. Non-Functional Requirements
-- Offline-first mimari
-- Performans: Check-in < 3 saniye, öneri < 2 saniye
-- Gizlilik: Minimum veri toplama, on-device öncelik
+ 6. Non-Functional Requirements
+- Offline-first
+- Yüksek performans (check-in < 3 sn)
+- Gizlilik odaklı (çoğu veri cihazda kalacak)
 - Destek: Android 10+ ve iOS 15+
 
- 8. Technical Stack
+ 7. Technical Stack
 - Flutter + Riverpod
-- Hive + SQLite (offline)
-- AI: Lightweight on-device model + prompt engineering
+- Hive + SQLite
+- AI: Lightweight on-device model
 - Analytics: Firebase (anonim)
 
- 9. Success Metrics
+ 8. Success Metrics
 - Day-1 Retention ≥ %65
 - Day-7 Retention ≥ %40
 - Day-30 Retention ≥ %25
-- Ortalama check-in süresi ≤ 55 saniye
 
- 10. Risks & Mitigation
-- Risk: Diğer Lumina isimli uygulamalarla karışma → Çözüm: Güçlü farklılaşma (ultra kısa + proaktif AI mikro koçluk)
-- Risk: Kullanıcılar check-in’i sıkıcı bulabilir → Çözüm: Haftalık yeni varyasyonlar ve A/B testi
-- Risk: AI önerileri yetersiz kalabilir → Çözüm: Erken kullanıcı feedback döngüsü
+ 9. Risks & Mitigation
+- Rekabet (benzer isimler) → Güçlü farklılaşma ile proaktif AI vurgusu
+- Düşük retention → Kısa ve eğlenceli check-in + streak sistemi
 
- 11. Roadmap
-- v1.0: MVP (P0 + P1)
-- v1.1: Ses ve iyileştirmeler
-- v2.0: Wearable + ileri AI
+##- v1.0 MVP (İngilizce + Türkçe)
+- v1.1 Ses ve iyileştirmeler
+- v2.0 Daha fazla dil + Wearable
 
-Not:Bu PRD, MVP geliştirme sürecinde AI coding araçları (Cursor, Claude, Grok vb.) ile kullanılmak üzere hazırlanmıştır.
+Bu PRD, MVP geliştirme için AI araçlarıyla hazırlanmıştır.
