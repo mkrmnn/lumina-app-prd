@@ -29,6 +29,6 @@ Detaylı geliştirme adımları ve phase'ler `plan.md` dosyasında bulunabilir.
 
 
 Bu repo, Lumina uygulamasının MVP dokümantasyonunu içermektedir.  
-
+Complete Week 2 delivery - Added plan.md and updated README
 
 Made with focus on mental wellness ✨
