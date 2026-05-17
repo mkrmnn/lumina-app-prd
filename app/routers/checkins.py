@@ -1,0 +1,40 @@
+from fastapi import APIRouter, Depends, HTTPException, status
+from sqlalchemy.orm import Session
+from .. import crud, schemas
+from ..database import get_db
+
+router = APIRouter(prefix="/check-ins", tags=["check-ins"])
+
+@router.post("", response_model=schemas.CheckInRead, status_code=status.HTTP_201_CREATED)
+def create_check_in(
+    payload: schemas.CheckInCreate,
+    db: Session = Depends(get_db),
+):
+    return crud.create_check_in(db, payload)
+
+@router.get("", response_model=list[schemas.CheckInRead])
+def list_check_ins(skip: int = 0, limit: int = 50, db: Session = Depends(get_db)):
+    return crud.list_check_ins(db, skip=skip, limit=limit)
+
+@router.get("/{check_in_id}", response_model=schemas.CheckInRead)
+def get_check_in(check_in_id: str, db: Session = Depends(get_db)):
+    row = crud.get_check_in(db, check_in_id)
+    if not row:
+        raise HTTPException(status_code=404, detail="Check-in bulunamadı")
+    return row
+
+@router.patch("/{check_in_id}", response_model=schemas.CheckInRead)
+def update_check_in(
+    check_in_id: str,
+    payload: schemas.CheckInUpdate,
+    db: Session = Depends(get_db),
+):
+    row = crud.update_check_in(db, check_in_id, payload)
+    if not row:
+        raise HTTPException(status_code=404, detail="Check-in bulunamadı")
+    return row
+
+@router.delete("/{check_in_id}", status_code=status.HTTP_204_NO_CONTENT)
+def delete_check_in(check_in_id: str, db: Session = Depends(get_db)):
+    if not crud.delete_check_in(db, check_in_id):
+        raise HTTPException(status_code=404, detail="Check-in bulunamadı")
