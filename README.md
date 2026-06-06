@@ -1,37 +1,17 @@
-# Lumina
+# lumina_app
 
-AI-Powered Emotional Balance & Wellness App
+A new Flutter project.
 
-> **Tagline:** 45 saniyede iç ışığınızı bulun.
+## Getting Started
 
-Lumina, günlük hayatın yoğun temposunda duygusal farkındalığınızı artıran, proaktif AI destekli kişisel wellness koçunuzdur. Her gün sadece birkaç dokunuşla ruh halinizi kaydedin; Lumina sizi tanısın ve tam ihtiyacınız olan mikro desteği sunsun.
+This project is a starting point for a Flutter application.
 
-📋 Proje Dosyaları
-* [PRD.md](PRD.md) — Product Requirements Document (MVP v1.0)
-* [plan.md](plan.md) — Detaylı Geliştirme Planı
+A few resources to get you started if this is your first Flutter project:
 
-🛠️ Teknik Stack
-* **Frontend:** Flutter (Dart)
-* **Backend:** Python + FastAPI (Uvicorn)
-* **Yapay Zeka (AI):** Google GenAI (Gemini API)
-* **Güvenlik & Auth:** OAuth2 (Password Bearer), JWT Token, Bcrypt Hashing
-* **Local Storage:** SharedPreferences / Hive
+- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
+- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
 
-📁 Temel Klasör Yapısı
-* `backend/` → Python FastAPI backend servisleri (Auth, Güvenlik, AI Entegrasyonu)
-* `lumina_app/` → Flutter mobil & web uygulaması (Clean Architecture / Feature-Based)
-  * `lib/features/auth/` → Kayıt Ol ve Giriş Yap ekranları, kurye servisleri (`AuthService`)
-
-🚀 Kurulum ve Çalıştırma (How to Run)
-
-### 1. Backend Kurulumu
-`cd backend`
-`pip install -r requirements.txt`
-`uvicorn app.main:app --reload`
-
-### 2. Frontend Kurulumu
-`cd lumina_app`
-`flutter pub get`
-`flutter run -d web-server --web-port 8080`
-
-Made with focus on mental wellness ✨
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
