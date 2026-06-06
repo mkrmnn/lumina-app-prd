@@ -1,35 +1,37 @@
- Lumina
+# Lumina
 
 AI-Powered Emotional Balance & Wellness App
 
-> Tagline: 45 saniyede iç ışığınızı bulun.
+> **Tagline:** 45 saniyede iç ışığınızı bulun.
 
-Lumina, günlük hayatın yoğun temposunda duygusal farkındalığınızı artıran, proaktif AI destekli kişisel wellness koçunuzdur.  
-Her gün sadece birkaç dokunuşla ruh halinizi kaydedin; Lumina sizi tanısın ve tam ihtiyacınız olan mikro desteği sunsun.
+Lumina, günlük hayatın yoğun temposunda duygusal farkındalığınızı artıran, proaktif AI destekli kişisel wellness koçunuzdur. Her gün sadece birkaç dokunuşla ruh halinizi kaydedin; Lumina sizi tanısın ve tam ihtiyacınız olan mikro desteği sunsun.
 
- 📋 Proje Dosyaları
+📋 Proje Dosyaları
+* [PRD.md](PRD.md) — Product Requirements Document (MVP v1.0)
+* [plan.md](plan.md) — Detaylı Geliştirme Planı
 
-- [PRD.md](./PRD.md) — Product Requirements Document (MVP v1.0)
-- [plan.md](./plan.md) — Detaylı Geliştirme Planı (2. Hafta Teslimi)
+🛠️ Teknik Stack
+* **Frontend:** Flutter (Dart)
+* **Backend:** Python + FastAPI (Uvicorn)
+* **Yapay Zeka (AI):** Google GenAI (Gemini API)
+* **Güvenlik & Auth:** OAuth2 (Password Bearer), JWT Token, Bcrypt Hashing
+* **Local Storage:** SharedPreferences / Hive
 
- 🛠 Teknik Stack
--Frontend: Flutter (Dart)
-- Backend: Node.js + Express.js
-- Auth & DB: Firebase (Authentication + Firestore)
-- Local Storage: Hive
-- Dil Desteği: İngilizce + Türkçe
+📁 Temel Klasör Yapısı
+* `backend/` → Python FastAPI backend servisleri (Auth, Güvenlik, AI Entegrasyonu)
+* `lumina_app/` → Flutter mobil & web uygulaması (Clean Architecture / Feature-Based)
+  * `lib/features/auth/` → Kayıt Ol ve Giriş Yap ekranları, kurye servisleri (`AuthService`)
 
- 📁 Klasör Yapısı
-- `frontend/` → Flutter mobil uygulama
-- `backend/` → Node.js backend servisi (ayrı dizin)
+🚀 Kurulum ve Çalıştırma (How to Run)
 
- 🚀 Geliştirme Planı
-Detaylı geliştirme adımları ve phase'ler `plan.md` dosyasında bulunabilir.
+### 1. Backend Kurulumu
+`cd backend`
+`pip install -r requirements.txt`
+`uvicorn app.main:app --reload`
 
-
-
-Bu repo, Lumina uygulamasının MVP dokümantasyonunu içermektedir.  
-
-Complete Week 2 delivery - Added plan.md and updated README
+### 2. Frontend Kurulumu
+`cd lumina_app`
+`flutter pub get`
+`flutter run -d web-server --web-port 8080`
 
 Made with focus on mental wellness ✨
