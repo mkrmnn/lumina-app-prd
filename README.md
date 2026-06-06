@@ -1,17 +1,17 @@
-# lumina_app
+# Lumina
 
-A new Flutter project.
+AI-Powered Emotional Balance & Wellness App
 
-## Getting Started
+> **Tagline:** 45 saniyede iç ışığınızı bulun.
 
-This project is a starting point for a Flutter application.
+Lumina, günlük hayatın yoğun temposunda duygusal farkındalığınızı artıran, proaktif AI destekli kişisel wellness koçunuzdur.
 
-A few resources to get you started if this is your first Flutter project:
+🛠️ Teknik Stack
+* **Frontend:** Flutter (Dart)
+* **Backend:** Python + FastAPI (Uvicorn)
+* **Yapay Zeka (AI):** Google GenAI (Gemini API)
+* **Güvenlik & Auth:** OAuth2, JWT Token, Bcrypt Hashing
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+📁 Klasör Yapısı
+* `backend/` → Python FastAPI backend servisleri
+* `lib/` → Flutter frontend kodları ve ekranlar (`features/auth` vb.)
