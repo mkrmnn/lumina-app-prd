@@ -33,4 +33,33 @@ def list_check_ins(
     return crud.list_check_ins(db, skip=skip, limit=limit, user_email=current_user)
 
 @router.get("/{check_in_id}", response_model=schemas.CheckInRead)
-def
+def get_check_in(
+    check_in_id: str,
+    db: Session = Depends(get_db),
+    current_user: str = Depends(get_current_user_email),
+):
+    row = crud.get_check_in(db, check_in_id)
+    if not row:
+        raise HTTPException(status_code=404, detail="Check-in bulunamadı")
+    return row
+
+@router.patch("/{check_in_id}", response_model=schemas.CheckInRead)
+def update_check_in(
+    check_in_id: str,
+    payload: schemas.CheckInUpdate,
+    db: Session = Depends(get_db),
+    current_user: str = Depends(get_current_user_email),
+):
+    row = crud.update_check_in(db, check_in_id, payload)
+    if not row:
+        raise HTTPException(status_code=404, detail="Check-in bulunamadı")
+    return row
+
+@router.delete("/{check_in_id}", status_code=status.HTTP_204_NO_CONTENT)
+def delete_check_in(
+    check_in_id: str,
+    db: Session = Depends(get_db),
+    current_user: str = Depends(get_current_user_email),
+):
+    if not crud.delete_check_in(db, check_in_id):
+        raise HTTPException(status_code=404, detail="Check-in bulunamadı")
