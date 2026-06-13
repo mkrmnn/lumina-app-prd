@@ -47,7 +47,7 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-Backend `http://127.0.0.1:8000` adresinde çalışır. Swagger dokümantasyonu: `http://127.0.0.1:8000/docs`
+Backend `https://lumina-api-735e.onrender.com` adresinde çalışır. Swagger dokümantasyonu: ` https://lumina-api-735e.onrender.com`
 
 ### Frontend
 
