@@ -10,29 +10,20 @@ DEFAULT_AI_RESPONSE = {
     "ai_sentiment": "Belirsiz",
     "positivity_score": 50,
     "stress_level": 5,
-    "ai_recommendation": "Şu an zihnini okurken küçük bir bağlantı sorunu yaşıyorum ama Lumina her zaman yanında. Bugün kendine küçük bir iyilik yapmayı unutma.",
-    "notification_text": "Bugün nasıl hissediyorsun? Kısa bir mola sana çok iyi gelebilir."
+    "ai_recommendation": "Lumina her zaman yaninda. Bugun kendine kucuk bir iyilik yapmayi unutma.",
+    "notification_text": "Bugun nasil hissediyorsun? Kisa bir mola sana cok iyi gelebilir."
 }
 
-def create_check_in(db: Session, data: schemas.CheckInCreate, user_email: str | None = None) -> models.CheckIn:
+def create_check_in(db: Session, data: schemas.CheckInCreate, user_email=None):
     ai_data = DEFAULT_AI_RESPONSE.copy()
-
     try:
         api_key = os.getenv("GEMINI_API_KEY")
         if api_key:
             client = genai.Client(api_key=api_key)
-            note_text = data.journal_entry if data.journal_entry else "Kullanıcı bugün herhangi bir not bırakmadı."
-            prompt = f"""
-            Sen profesyonel, empatik bir psikolojik iyi oluş asistanisin.
-            Kullanicinin bugünkü verileri:
-            - Duygu Durumu (Mood): {data.mood}/5
-            - Enerji Seviyesi: {data.energy}/5
-            - Odaklanma Seviyesi: {data.focus}/5
-            - Günlük Notu: "{note_text}"
-            Bu verileri analiz et ve AIFeedbackResponse JSON semasina uygun bir cevap üret.
-            """
+            note_text = data.journal_entry if data.journal_entry else "Kullanici not birakmadi."
+            prompt = f"Mood:{data.mood}/5 Enerji:{data.energy}/5 Odak:{data.focus}/5 Not:{note_text} - AIFeedbackResponse JSON uret."
             response = client.models.generate_content(
-                model='gemini-2.5-flash',
+                model="gemini-2.5-flash",
                 contents=prompt,
                 config=types.GenerateContentConfig(
                     response_mime_type="application/json",
@@ -41,16 +32,16 @@ def create_check_in(db: Session, data: schemas.CheckInCreate, user_email: str | 
                 ),
             )
             if response.text:
-                parsed_data = schemas.AIFeedbackResponse.model_validate_json(response.text)
+                parsed = schemas.AIFeedbackResponse.model_validate_json(response.text)
                 ai_data = {
-                    "ai_sentiment": parsed_data.detected_emotion,
-                    "positivity_score": parsed_data.positivity_score,
-                    "stress_level": parsed_data.stress_level,
-                    "ai_recommendation": parsed_data.daily_recommendation,
-                    "notification_text": parsed_data.mind_reading_notification_text
+                    "ai_sentiment": parsed.detected_emotion,
+                    "positivity_score": parsed.positivity_score,
+                    "stress_level": parsed.stress_level,
+                    "ai_recommendation": parsed.daily_recommendation,
+                    "notification_text": parsed.mind_reading_notification_text,
                 }
     except Exception as e:
-        print(f"YZ Motoru Hatası: {e}")
+        print(f"YZ Hatasi: {e}")
 
     user = None
     if user_email:
@@ -70,17 +61,17 @@ def create_check_in(db: Session, data: schemas.CheckInCreate, user_email: str | 
         positivity_score=ai_data["positivity_score"],
         stress_level=ai_data["stress_level"],
         ai_recommendation=ai_data["ai_recommendation"],
-        notification_text=ai_data["notification_text"]
+        notification_text=ai_data["notification_text"],
     )
     db.add(row)
     db.commit()
     db.refresh(row)
     return row
 
-def get_check_in(db: Session, check_in_id: str) -> models.CheckIn | None:
+def get_check_in(db: Session, check_in_id: str):
     return db.get(models.CheckIn, check_in_id)
 
-def list_check_ins(db: Session, skip: int = 0, limit: int = 50, user_email: str | None = None) -> list[models.CheckIn]:
+def list_check_ins(db: Session, skip: int = 0, limit: int = 50, user_email=None):
     query = db.query(models.CheckIn)
     if user_email:
         user = db.query(models.User).filter(models.User.email == user_email).first()
@@ -88,8 +79,20 @@ def list_check_ins(db: Session, skip: int = 0, limit: int = 50, user_email: str 
             query = query.filter(models.CheckIn.user_id == user.id)
     return query.order_by(models.CheckIn.timestamp.desc()).offset(skip).limit(limit).all()
 
-def update_check_in(db: Session, check_in_id: str, data: schemas.CheckInUpdate) -> models.CheckIn | None:
+def update_check_in(db: Session, check_in_id: str, data: schemas.CheckInUpdate):
     row = get_check_in(db, check_in_id)
     if not row:
         return None
-    for
+    for field, value in data.model_dump(exclude_unset=True, by_alias=False).items():
+        setattr(row, field, value)
+    db.commit()
+    db.refresh(row)
+    return row
+
+def delete_check_in(db: Session, check_in_id: str) -> bool:
+    row = get_check_in(db, check_in_id)
+    if not row:
+        return False
+    db.delete(row)
+    db.commit()
+    return True
