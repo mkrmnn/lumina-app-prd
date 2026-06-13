@@ -30,3 +30,18 @@ class CheckInRead(CheckInBase):
     timestamp: datetime
 
     model_config = ConfigDict(from_attributes=True, populate_by_name=True)
+
+class AIFeedbackResponse(BaseModel):
+    detected_emotion: str
+    positivity_score: int
+    stress_level: int
+    daily_recommendation: str
+    mind_reading_notification_text: str
+
+class UserCreate(BaseModel):
+    email: str
+    password: str
+
+class UserLogin(BaseModel):
+    email: str
+    password: str
