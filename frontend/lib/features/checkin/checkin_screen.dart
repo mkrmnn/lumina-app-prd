@@ -22,7 +22,7 @@ class _CheckInScreenState extends State<CheckInScreen> {
   bool _isSaving = false;
 
   // Gerçek API adresimiz (Chrome/Web üzerinde çalışırken localhost yerine 127.0.0.1 kullanılır)
-  final String apiUrl = 'http://127.0.0.1:8000/api/v1/check-ins';
+  final String apiUrl = 'https://lumina-api-735e.onrender.com';
 
   @override
   void dispose() {

@@ -17,7 +17,7 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
   double _avgEnergy = 0;
   List<dynamic> _recentLogs = [];
 
-  final String apiUrl = 'http://127.0.0.1:8000/api/v1/check-ins';
+  final String apiUrl = 'https://lumina-api-735e.onrender.com';
 
   @override
   void initState() {

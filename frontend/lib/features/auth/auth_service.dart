@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   // Backend'imizin adresi (Dün çalıştırdığımız Python sunucusu)
-  final String baseUrl = 'http://127.0.0.1:8000/api/v1/auth';
+  final String baseUrl = ' https://lumina-api-735e.onrender.com';
 
   // 1. KAYIT OLMA (REGISTER) İŞLEMİ
   Future<bool> register(String email, String password) async {
