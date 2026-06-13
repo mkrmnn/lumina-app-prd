@@ -76263,7 +76263,7 @@ nm(a,b){return this.aka(a,b)},
 aka(a,b){var s=0,r=A.P(t.y),q,p=2,o=[],n,m,l,k,j,i
 var $async$nm=A.Q(function(c,d){if(c===1){o.push(d)
 s=p}for(;;)switch(s){case 0:p=4
-m=A.fw(" https://lumina-api-735e.onrender.com/register")
+m=A.fw("https://lumina-api-735e.onrender.com/api/v1/auth/register")
 l=t.N
 k=A.ae(["Content-Type","application/json"],l,l)
 s=7
@@ -76293,7 +76293,7 @@ p8(a,b){return this.aif(a,b)},
 aif(a,b){var s=0,r=A.P(t.y),q,p=2,o=[],n,m,l,k,j,i,h,g,f
 var $async$p8=A.Q(function(c,d){if(c===1){o.push(d)
 s=p}for(;;)switch(s){case 0:p=4
-j=A.fw(" https://lumina-api-735e.onrender.com/login")
+j=A.fw("https://lumina-api-735e.onrender.com/api/v1/auth/login")
 i=t.N
 h=A.ae(["Content-Type","application/json"],i,i)
 s=7
