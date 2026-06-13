@@ -4,6 +4,7 @@ AI-Powered Emotional Balance & Wellness App
 
 > **Tagline:** 45 saniyede iç ışığınızı bulun.
 
+ HEAD
 Lumina, günlük hayatın yoğun temposunda duygusal farkındalığınızı artıran, proaktif AI destekli kişisel wellness koçunuzdur. Kullanıcılar günlük mood, enerji ve odak seviyelerini kaydeder; Google Gemini AI bu verileri analiz ederek kişiselleştirilmiş geri bildirim ve öneriler sunar.
 
 ## 🚀 Canlı Demo
@@ -64,3 +65,16 @@ Detaylı bilgi için `prodocs/` klasörüne bakın:
 - `tech-stack.md` — Teknoloji seçimleri ve gerekçeleri
 - `DesignSystem.md` — Renk paleti, tipografi, component kuralları
 - `Progress.md` — Geliştirme süreci kaydı
+
+Lumina, günlük hayatın yoğun temposunda duygusal farkındalığınızı artıran, proaktif AI destekli kişisel wellness koçunuzdur.
+
+🛠️ Teknik Stack
+* **Frontend:** Flutter (Dart)
+* **Backend:** Python + FastAPI (Uvicorn)
+* **Yapay Zeka (AI):** Google GenAI (Gemini API)
+* **Güvenlik & Auth:** OAuth2, JWT Token, Bcrypt Hashing
+
+📁 Klasör Yapısı
+* `backend/` → Python FastAPI backend servisleri
+* `lib/` → Flutter frontend kodları ve ekranlar (`features/auth` vb.)
+ f8f07a5c42a495a9de385444b6c3107655dbb8a6
