@@ -22,3 +22,5 @@ class LuminaApp extends StatelessWidget {
     );
   }
 }
+
+// Vercel guncelleme testi
