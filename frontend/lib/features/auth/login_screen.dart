@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'auth_service.dart'; 
+import 'auth_service.dart';
+import '../navigation/main_wrapper.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -11,15 +12,13 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final AuthService _authService = AuthService(); 
+  final AuthService _authService = AuthService();
 
-  bool _isLoading = false; 
-  bool _isLoginMode = true; 
+  bool _isLoading = false;
+  bool _isLoginMode = true;
 
   void _submitForm() async {
-    setState(() {
-      _isLoading = true; 
-    });
+    setState(() => _isLoading = true);
 
     bool success;
     if (_isLoginMode) {
@@ -34,24 +33,24 @@ class _LoginScreenState extends State<LoginScreen> {
       );
     }
 
-    setState(() {
-      _isLoading = false; 
-    });
+    setState(() => _isLoading = false);
+
+    if (!mounted) return;
 
     if (success) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(_isLoginMode ? 'Giriş Başarılı! Hoş geldin.' : 'Kayıt Başarılı! Şimdi giriş yapabilirsin.'),
-          backgroundColor: Colors.green,
-        ),
-      );
-      
-      if (!_isLoginMode) {
-        setState(() {
-          _isLoginMode = true;
-        });
+      if (_isLoginMode) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => MainWrapper()),
+        );
       } else {
-        // Giriş başarılıysa ana sayfaya yönlendirilecek yer
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Kayıt başarılı! Şimdi giriş yapabilirsin.'),
+            backgroundColor: Colors.green,
+          ),
+        );
+        setState(() => _isLoginMode = true);
       }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -66,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black87, 
+      backgroundColor: Colors.black87,
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24.0),
@@ -88,7 +87,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 style: const TextStyle(color: Colors.white70, fontSize: 16),
               ),
               const SizedBox(height: 40),
-
               TextField(
                 controller: _emailController,
                 style: const TextStyle(color: Colors.white),
@@ -105,10 +103,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(height: 16),
-
               TextField(
                 controller: _passwordController,
-                obscureText: true, 
+                obscureText: true,
                 style: const TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   hintText: 'Şifre',
@@ -123,13 +120,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(height: 30),
-
               SizedBox(
                 width: double.infinity,
                 height: 50,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blueAccent, 
+                    backgroundColor: Colors.blueAccent,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -139,18 +135,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       ? const CircularProgressIndicator(color: Colors.white)
                       : Text(
                           _isLoginMode ? 'Giriş Yap' : 'Kayıt Ol',
-                          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                         ),
                 ),
               ),
               const SizedBox(height: 20),
-
               TextButton(
-                onPressed: () {
-                  setState(() {
-                    _isLoginMode = !_isLoginMode; 
-                  });
-                },
+                onPressed: () => setState(() => _isLoginMode = !_isLoginMode),
                 child: Text(
                   _isLoginMode
                       ? 'Hesabın yok mu? Hemen kayıt ol.'
