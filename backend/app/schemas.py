@@ -28,6 +28,11 @@ class CheckInUpdate(BaseModel):
 class CheckInRead(CheckInBase):
     id: str
     timestamp: datetime
+    ai_sentiment: str | None = None
+    positivity_score: int | None = None
+    stress_level: int | None = None
+    ai_recommendation: str | None = None
+    notification_text: str | None = None
 
     model_config = ConfigDict(from_attributes=True, populate_by_name=True)
 
