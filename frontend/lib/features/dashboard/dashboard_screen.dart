@@ -17,7 +17,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   bool _isLoading = true;
   String? _errorMessage;
 
-  final String apiUrl = 'https://lumina-api-735e.onrender.com';
+final String apiUrl = 'https://lumina-api-735e.onrender.com/api/v1/check-ins';
 
   @override
   void initState() {
